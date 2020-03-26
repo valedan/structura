@@ -74,10 +74,14 @@ api.get("/query", async (req, res) => {
     .sort({ [req.query.sortBy || "uid"]: req.query.desc === "true" ? -1 : 1 })
     .skip(skip)
     .exec();
+
+  const count = await db.count({});
+
   // Bug with nedb-promise skip + limit, therefore manually slice
   send(res, 200, {
     success: true,
-    data: limit !== null ? data.slice(0, limit) : data
+    data: limit !== null ? data.slice(0, limit) : data,
+    total: count
   });
 });
 

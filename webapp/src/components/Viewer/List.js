@@ -12,6 +12,7 @@ const List = ({ selected, setSelected }) => {
   const [sortDirection, setSortDirection] = useState("asc");
   const [sortBy, setSortBy] = useState("uid");
   const [data, setData] = useState([]);
+  const [total, setTotal] = useState(0);
 
   const loadData = async () => {
     const response = await axios.get("api/query", {
@@ -23,6 +24,7 @@ const List = ({ selected, setSelected }) => {
       }
     });
     setData(data => data.concat(response.data.data));
+    setTotal(total => response.data.total);
     if (selected === null) {
       setSelected(response.data.data[0]);
     }
@@ -62,7 +64,7 @@ const List = ({ selected, setSelected }) => {
           dataLength={data.length}
           next={loadData}
           // Prevent trying to load data when it's already being handled by useEffect above
-          hasMore={data.length > 0}
+          hasMore={data.length > 0 && data.length < total}
           loader={<h4>Loading...</h4>}
           scrollableTarget="scroll-container"
         >
