@@ -1,3 +1,19 @@
-# Structura Biotechnology: Full-Stack Tech Challenge
+This project is set up with a standalone React client in the `webapp` folder.
 
-Please follow the instructions you were provided.
+## Setup
+
+- In the root folder, run
+
+```
+npm install
+npm run dev
+```
+
+- And in the `webapp` folder, run
+
+```
+npm install
+npm start
+```
+
+The client should then be running on localhost:3000
