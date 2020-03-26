@@ -17,6 +17,11 @@ const Viewer = () => {
 export default Viewer;
 
 const Wrapper = styled.div`
+  width: 90%;
+  margin: auto;
   display: flex;
   flex-direction: row;
+  @media (max-width: 1290px) {
+    width: 100%;
+  }
 `;

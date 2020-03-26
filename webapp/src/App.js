@@ -33,7 +33,5 @@ const App = () => {
 export default App;
 
 const Content = styled.div`
-  width: 80%;
-  margin: auto;
   margin-top: 2rem;
 `;

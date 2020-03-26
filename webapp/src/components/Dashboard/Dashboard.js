@@ -14,4 +14,7 @@ const Dashboard = () => {
 
 export default Dashboard;
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  width: 80%;
+  margin: auto;
+`;
