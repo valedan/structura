@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
+import LabelledCard from "../shared/LabelledCard";
 import styled from "styled-components";
 import axios from "axios";
-import LabelledCard from "../shared/LabelledCard";
 
 const Averages = () => {
   const [count, setCount] = useState();

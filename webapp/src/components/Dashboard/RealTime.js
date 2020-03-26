@@ -3,6 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 import Paper from "@material-ui/core/Paper";
 import moment from "moment";
+import { useTheme } from "@material-ui/core/styles";
 import {
   ResponsiveContainer,
   AreaChart,
@@ -15,6 +16,7 @@ import {
 
 const RealTime = () => {
   const [data, setData] = useState([]);
+  const theme = useTheme();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -66,8 +68,8 @@ const RealTime = () => {
           <Area
             isAnimationActive={false}
             dataKey="value"
-            stroke="#93c0e7"
-            fill="#bee3f8"
+            stroke={theme.palette.primary.main}
+            fill={theme.palette.primary.light}
           />
         </AreaChart>
       </ResponsiveContainer>

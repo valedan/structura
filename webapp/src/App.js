@@ -6,7 +6,6 @@ import Viewer from "./components/Viewer/Viewer";
 import Navbar from "./components/Navbar/Navbar";
 import { theme } from "./theme";
 import { ThemeProvider as MuiThemeProvider } from "@material-ui/styles";
-import grey from "@material-ui/core/colors/grey";
 
 const App = () => {
   return (
@@ -34,4 +33,5 @@ export default App;
 
 const Content = styled.div`
   margin-top: 2rem;
+  margin-bottom: 2rem;
 `;

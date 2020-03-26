@@ -38,6 +38,6 @@ const StyledTableRow = styled(TableRow)`
   }
 
   &&.active {
-    background: #bee3f8;
+    background: ${props => props.theme.palette.primary.light};
   }
 `;

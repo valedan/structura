@@ -53,6 +53,6 @@ const StyledNavLink = styled(NavLink)`
   }
   &.active button {
     color: white;
-    background: #1976d2;
+    background: ${props => props.theme.palette.primary.main};
   }
 `;
