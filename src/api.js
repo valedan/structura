@@ -55,8 +55,22 @@ api.get("/query", async (req, res) => {
   // limit (number)
   const skip = req.query.skip || null;
   const limit = req.query.limit || null;
+  const projections = {
+    uid: 1,
+    motion_curvature: 1,
+    pick_ncc_median: 1,
+    ctf_fit_to_A: 1,
+    pick_pow_median: 1,
+    df_ast: 1,
+    df_avg: 1,
+    fname: 1,
+    num_particles: 1,
+    motion_total_pix: 1,
+    _id: 0
+  };
+
   const data = await db
-    .cfind({})
+    .cfind({}, projections)
     .sort({ [req.query.sortBy || "uid"]: req.query.desc === "true" ? -1 : 1 })
     .skip(skip)
     .exec();
@@ -67,23 +81,21 @@ api.get("/query", async (req, res) => {
   });
 });
 
+const averageFieldValue = (array, field) => {
+  return array.map(obj => obj[field]).reduce((a, b) => a + b) / array.length;
+};
+
 // Return various averages across the micrographs in the database
 api.get("/averages", async (_, res) => {
   const data = await db.find({});
   const averages = {
-    motion_curvature:
-      data.map(d => d.motion_curvature).reduce((a, b) => a + b) / data.length,
-    ctf_fit_to_A:
-      data.map(d => d.ctf_fit_to_A).reduce((a, b) => a + b) / data.length,
-    pick_ncc_median:
-      data.map(d => d.pick_ncc_median).reduce((a, b) => a + b) / data.length,
-    num_particles:
-      data.map(d => d.num_particles).reduce((a, b) => a + b) / data.length,
-    pick_pow_median:
-      data.map(d => d.pick_pow_median).reduce((a, b) => a + b) / data.length,
-    df_ast: data.map(d => d.df_ast).reduce((a, b) => a + b) / data.length,
-    motion_total_pix:
-      data.map(d => d.motion_total_pix).reduce((a, b) => a + b) / data.length
+    motion_curvature: averageFieldValue(data, "motion_curvature"),
+    ctf_fit_to_A: averageFieldValue(data, "ctf_fit_to_A"),
+    pick_ncc_median: averageFieldValue(data, "pick_ncc_median"),
+    num_particles: averageFieldValue(data, "num_particles"),
+    pick_pow_median: averageFieldValue(data, "pick_pow_median"),
+    df_ast: averageFieldValue(data, "df_ast"),
+    motion_total_pix: averageFieldValue(data, "motion_total_pix")
   };
   send(res, 200, { success: true, data: averages });
 });
