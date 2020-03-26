@@ -8,11 +8,10 @@ import TableContainer from "@material-ui/core/TableContainer";
 import Paper from "@material-ui/core/Paper";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-const List = () => {
+const List = ({ selected, setSelected }) => {
   const [sortDirection, setSortDirection] = useState("asc");
   const [sortBy, setSortBy] = useState("uid");
   const [data, setData] = useState([]);
-  const [selected, setSelected] = useState(null);
 
   const loadData = async () => {
     const response = await axios.get("api/query", {
@@ -25,7 +24,7 @@ const List = () => {
     });
     setData(data => data.concat(response.data.data));
     if (selected === null) {
-      setSelected(response.data.data[0].uid);
+      setSelected(response.data.data[0]);
     }
   };
 
@@ -44,8 +43,8 @@ const List = () => {
     setData([]);
   };
 
-  const handleSelectRow = uid => {
-    setSelected(uid);
+  const handleSelectRow = row => {
+    setSelected(row);
   };
 
   return (
@@ -91,7 +90,7 @@ const Wrapper = styled(Paper)`
 `;
 
 const ScrollContainer = styled(TableContainer)`
-  /* 60px navbar, 38px table header and 2rem gutters top and bottom */
-  height: calc(100vh - 60px - 38px - 4rem);
+  /* 60px navbar, 40px table header and 2rem gutters top and bottom */
+  height: calc(100vh - 60px - 40px - 4rem);
   overflow-y: scroll;
 `;

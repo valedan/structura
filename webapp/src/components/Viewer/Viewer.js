@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import List from "./List";
 import Details from "./Details";
 import styled from "styled-components";
 
 const Viewer = () => {
+  const [selected, setSelected] = useState(null);
+
   return (
     <Wrapper>
-      <List />
-      <Details />
+      <List setSelected={setSelected} selected={selected} />
+      <Details selected={selected} />
     </Wrapper>
   );
 };

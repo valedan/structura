@@ -12,8 +12,8 @@ const ListBody = ({ data, selected, handleSelectRow }) => {
         return (
           <StyledTableRow
             key={row.uid}
-            onClick={() => handleSelectRow(row.uid)}
-            className={row.uid === selected ? "active" : "inactive"}
+            onClick={() => handleSelectRow(row)}
+            className={row.uid === selected?.uid ? "active" : "inactive"}
           >
             <TableCell>{row.uid}</TableCell>
             <TableCell align="right">{row.num_particles}</TableCell>
