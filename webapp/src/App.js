@@ -10,6 +10,7 @@ import { ThemeProvider as MuiThemeProvider } from "@material-ui/styles";
 const App = () => {
   return (
     <Router>
+      {/* MUI and styled components each use their own theme contexts, so we have to provide the theme to both */}
       <MuiThemeProvider theme={theme}>
         <ThemeProvider theme={theme}>
           <Navbar />

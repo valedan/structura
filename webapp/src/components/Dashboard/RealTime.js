@@ -22,7 +22,6 @@ const RealTime = () => {
     const fetchData = async () => {
       const response = await axios.get("api/random");
       const timestamp = moment().format("h:mm:ssa");
-      // const timestamp = Math.round(new Date().getTime() / 1000);
       setData(data =>
         data.concat({ name: timestamp, value: response.data.data })
       );

@@ -24,7 +24,7 @@ const List = ({ selected, setSelected }) => {
       }
     });
     setData(data => data.concat(response.data.data));
-    setTotal(total => response.data.total);
+    setTotal(response.data.total);
     if (selected === null) {
       setSelected(response.data.data[0]);
     }

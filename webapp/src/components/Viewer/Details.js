@@ -10,7 +10,7 @@ const Details = ({ selected }) => {
   return (
     <Wrapper elevation={2}>
       <TextWrapper>
-        <Title>{selected ? `Micrograph ${selected.uid}` : "Loading..."}</Title>
+        <h1>{selected ? `Micrograph ${selected.uid}` : "Loading..."}</h1>
         {selected && (
           <StatsTable size="small" padding="none">
             <TableBody>
@@ -72,8 +72,6 @@ const TextWrapper = styled.div`
   margin-right: auto;
   margin-bottom: 2rem;
 `;
-
-const Title = styled.h1``;
 
 const StatsTable = styled(Table)`
   && {
